@@ -42,7 +42,7 @@ function addNewRow() {
     newRowNode.classList.toggle('second-section-card-hidden')
     newRowNode.classList.toggle('new-row-animation')
 
-    console.log('done')
+    // console.log('done')
 }
 function addEventToArtistName() {
     let artistNode = document.querySelector('.p-artist-name')
