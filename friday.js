@@ -1,46 +1,43 @@
 let bodyInfo = []
 
-const artists = [
-    'metallica',
-    'behemoth',
-    'ed sheeran',
-    'britney spears',
-    'james brown',
-    'tupac',
-    'biggie smalls',
-    'alter bridge'
-]
+let artists = []
 
 window.onload = () => {
     // fetchAlbumByID()
-    renderCards()
+    renderCards('metallica')
+    renderCards('ed sheeran')
 }
 
-const fetchAlbumByID = () => {
-    fetch('https://striveschool-api.herokuapp.com/api/deezer/search?q=queen')
-    .then(res => res.json())
-    .then(body => {
-        bodyInfo = body
-        console.log(body)
-    })
-}
+// const fetchAlbumByID = () => {
+//     fetch('https://striveschool-api.herokuapp.com/api/deezer/search?q=queen')
+//     .then(res => res.json())
+//     .then(body => {
+//         bodyInfo = body
+//         console.log(body)
+//     })
+// }
 
 // const findIDinAPI = (id) => {
 //     // if (id === )
 //     fetch()
 // }
 
-const renderCards = () => {
 
-    let rowNode = document.querySelector('.friday-row')
+const renderCards = query => {
+
+    // let rowNode = document.querySelector('.friday-row')
     
-    artists.forEach(query => {
+    // artists.forEach(query => {
 
-    fetch('https://striveschool-api.herokuapp.com/api/deezer/album/' + query)
+    fetch('https://striveschool-api.herokuapp.com/api/deezer/search?q=' + query)
     .then(res => res.json())
     .then(body => {
-        rowNode.innerHTML = ''
+        // console.log(body.data)
+        artists = body.data
         console.log(body)
+        
+        let rowNode = document.querySelector('.friday-row')
+        // rowNode.innerHTML = ''
 
         
         // rowNode.classList.add('second-section-card')
@@ -62,7 +59,6 @@ const renderCards = () => {
     })
                      
 }
-
 
 
 // const clickAlbum = (id) => {
