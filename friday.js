@@ -2,6 +2,9 @@ let bodyInfo = []
 
 let artists = []
 
+// arrayOfSongs = Promise.All(artists.forEach(artist => fetchSongs(artist.name)))
+// renderSongs(arrayOfSongs)
+
 window.onload = () => {
     // fetchAlbumByID()
     renderCards('metallica')
