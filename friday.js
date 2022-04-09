@@ -12,6 +12,7 @@ let artists = [
     'joe bonamassa'
 ]
 
+
 let rowNode = document.querySelector('.friday-row')
 rowNode.innerHTML = ''
 
@@ -37,11 +38,11 @@ const renderCards = () => {
 
 const createNewCard = (body) => {
     let cardNode = document.createElement('div')
-    console.log(body)
+    // console.log(body)
     cardNode.innerHTML += `
                         <div class="col">
-                            <div class="card second-section-card">
-                                <img src="${body.album.cover}" class="card-img-top img-second-section" alt="...">
+                            <div id=${body.album.id}  class="card second-section-card">
+                                <img src="${body.album.cover}" class="card-img-top img-second-section" onclick="clickCard(event)" alt="...">
                                 <div class="card-body card-body-section2">
                                     <h5 class="card-title">${body.album.title}</h5>
                                     <p class="card-text">${body.artist.name}</p>
@@ -56,3 +57,27 @@ const appendCardToRow = (card) => {
     rowNode.innerHTML += card
     // console.log(rowNode)
 }
+
+const clickCard = (event) => {
+    
+    // console.log(event.target)
+    goToArtistPage(event)
+    let jumbotronNode = document.querySelector('.jumbotron')
+    // console.log(jumbotronNode)
+}
+
+const goToArtistPage = (event) => {
+    console.log(event.target.parentNode.id)
+    let urlParams = new URLSearchParams()
+    // console.log(event.target)
+    urlParams.set('artist name', event.target.parentNode.children[1].children[1].innerText)
+    urlParams.set('album name', event.target.parentNode.children[1].children[0].innerText)
+    urlParams.set('image', event.target.src)
+    urlParams.set('album ID', event.target.parentNode.id)
+    // console.log(urlParams.toString())
+    location.href = 'artist.html?' + urlParams.toString()
+    // console.log(urlParams.toString())
+
+}
+
+
