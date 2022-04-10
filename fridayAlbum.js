@@ -1,43 +1,34 @@
+// global variables
 let albumContainer = document.querySelector('.album-container')
-// console.log(albumContainer)
-let imgNode = albumContainer.querySelector('img')
-// console.log(imgNode)
-let albumName = albumContainer.querySelector('h1')
-let artistName = albumContainer.querySelector('p')
-// console.log(artistName.innerText)
+let currentImg = albumContainer.querySelector('img')
+let currentAlbum = albumContainer.querySelector('h1')
+let currentArtist = albumContainer.querySelector('p')
 let urlParams = new URLSearchParams(window.location.search)
 
 window.onload = () => {
-    getURLData()
+    changeJumbotronData()
     changeTrackNames()
 }
 
-const getURLData = () => {
+const changeJumbotronData = () => {
     
-    let imgParam = urlParams.get('image')
-    let artistNameParam = urlParams.get('artist name')
-    let albumNameParam = urlParams.get('album name')
-    imgNode.src = imgParam
-    albumName.innerText = albumNameParam
-    artistName.innerText = artistNameParam
+    let clickedImg = urlParams.get('image')
+    let clickedArtist = urlParams.get('artist name')
+    let clickedAlbum = urlParams.get('album name')
+    currentImg.src = clickedImg
+    currentAlbum.innerText = clickedAlbum
+    currentArtist.innerText = clickedArtist
 }
 const changeTrackNames = () => {
     let trackListDiv = document.querySelector('#album-track-list-friday')
     trackListDiv.innerHTML = ''
-    // console.log(trackListDiv)
-    let artistNameParam = urlParams.get('artist name')
-    let albumNameParam = urlParams.get('album name')
-
-    let albumID = urlParams.get('album ID')
-    // console.log(album)
-    fetch('https://striveschool-api.herokuapp.com/api/deezer/album/' + albumID)
+    let clickedAlbumID = urlParams.get('album ID')
+    fetch('https://striveschool-api.herokuapp.com/api/deezer/album/' + clickedAlbumID)
     .then(res => res.json())
     .then(body => {
-        // console.log(body.tracks.data)
-        body.tracks.data.forEach((track, index) => {
-            console.log(track)
+        let tracks = body.tracks.data
+        tracks.forEach((track, index) => {
         index += 1
-
         trackListDiv.innerHTML +=   `<div class="ml-3 pb-4">
                                         <span class="track-num">${index}.</span>
                                         <span class="album-song ml-4"

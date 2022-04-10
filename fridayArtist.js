@@ -69,9 +69,3 @@ const getData = () => {
         })
     
 }
-
-const addNewSongtoTable = (track) => {
-    
-}
-
-{}
