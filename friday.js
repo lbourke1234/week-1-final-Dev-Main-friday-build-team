@@ -75,7 +75,7 @@ const goToArtistPage = (event) => {
     urlParams.set('image', event.target.src)
     urlParams.set('album ID', event.target.parentNode.id)
     // console.log(urlParams.toString())
-    location.href = 'artist.html?' + urlParams.toString()
+    location.href = 'albumPage.html?' + urlParams.toString()
     // console.log(urlParams.toString())
 
 }
